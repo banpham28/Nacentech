@@ -1,0 +1,2 @@
+rootProject.name = "Graph_of_MQTT_Collected_Data"
+include ':app'
