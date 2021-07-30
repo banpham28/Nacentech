@@ -16,7 +16,7 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
     public Connection connectionclass()
     {
-        ip = "192.168.99.106";
+        ip = "192.168.99.107";
         database   = "NacenManager";
         uname = "banpham";
         pass = "Ban1234qw";

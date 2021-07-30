@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -95,26 +97,71 @@ public class MainActivity extends AppCompatActivity {
             connect = connectionHelper.connectionclass();
 
 
-            dataSet.add(new Entry(0,40));
-            dataSet.add(new Entry(1,10));
-            dataSet.add(new Entry(2,15));
-            dataSet.add(new Entry(3,12));
-            dataSet.add(new Entry(4,20));
-            dataSet.add(new Entry(5,50));
-            dataSet.add(new Entry(6,23));
-            dataSet.add(new Entry(7,34));
-            dataSet.add(new Entry(8,12));
-
-//            String query = "Select value from RawData where name='Lamp0-SC'";
-//            Statement st = connect.createStatement();
-//            ResultSet rs = st.executeQuery(query);
+//            dataSet.add(new Entry(0,40));
+//            dataSet.add(new Entry(1,10));
+//            dataSet.add(new Entry(2,15));
+//            dataSet.add(new Entry(3,12));
+//            dataSet.add(new Entry(4,20));
+//            dataSet.add(new Entry(5,50));
+//            dataSet.add(new Entry(6,23));
+//            dataSet.add(new Entry(7,34));
+//            dataSet.add(new Entry(8,12));
 //
-//            for(int i =0; i<10; i++)
-//                    {
-//                        float val = Float.parseFloat(rs.getString(1));
-//                        dataSet.add(new Entry(i,val));
-//                    }
+//            float a[] = {1,2,3,4,5,6,7,8,9,10};
+//            for(int i =1; i<10; i++)
+//            {
+//                try {
+//                    float k = Array.getFloat(a, i);
+//                    dataSet.add(new Entry(i,k));
+//                }
+//
+//                catch (Exception e) {
+//
+//                }
+//
+//            }
 
+
+            String query = "Select value from RawData where name='Lamp0-SC'";
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+
+            while (rs.next())
+            {
+                String str = rs.getString(1);
+                //String[] afstr = str.split(" ");
+                float val[] = {Float.parseFloat(str)};
+                //float val[] = {rs.getFloat(1)};
+
+                for(int i =1; i<10; i++)
+                {
+                    try {
+
+                        float k = Array.getFloat(val,i);
+                        dataSet.add(new Entry(i, k));
+                    }
+
+                   catch (Exception e) {
+
+                   }
+
+
+                }
+            }
+
+
+//            while (rs.next())
+//                {
+//
+//                    for(int i = 0; i<10; i++)
+//                    {
+//                        //float val = Float.parseFloat(rs.getString(1));
+//                        //dataSet.add(new Entry(i,val));
+//                        dataSet.add(new Entry(i, rs.getInt(2)));
+//                    }
+//                }
+//
 //            if (connect!= null)
 //            {
 //                String query = "Select value from RawData where name='Lamp0-SC'";
