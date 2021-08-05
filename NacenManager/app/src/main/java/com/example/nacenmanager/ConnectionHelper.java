@@ -17,7 +17,7 @@ public class ConnectionHelper {
     public Connection connectionclass()
     {
         ip = "192.168.99.107";
-        database   = "NacenManager";
+        database   = "SCADA";
         uname = "banpham";
         pass = "Ban1234qw";
         port = "1433";
